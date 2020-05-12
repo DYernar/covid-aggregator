@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid Kz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="icon" href="../img/virus.png" ></head>
+
+<body>
+    <header id="header" class="header header-hide">
+        <div class="container">
+
+            <div id="logo" class="pull-left">
+                <h1><a href="#body" class="scrollto"><span>C</span>ovid-2019</a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+            </div>
+        </div>
+    </header><!-- #header -->
+    <div id="map"></div>
+
+    <div class="wrapper">
+        <h3>Мировая статистика</h3>
+        <div class="jumbotron">
+            <div class="row w-100">
+                <div class="col-md-4">
+                    <div class="card border-danger mx-sm-1 p-3">
+                        <div class="card border-danger shadow text-danger p-3 my-card"><img src="../img/virus.png"
+                                alt="">
+                        </div>
+                        <div class="text-danger text-center mt-3">
+                            <h4>Сейчас Болеют:</h4>
+                        </div>
+                        <div class="text-danger text-center mt-2">
+                            <h1>{{.WorldData.Cases}}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-success mx-sm-1 p-3">
+                        <div class="card border-success shadow text-success p-3 my-card"><span class="fa fa-heart"
+                                aria-hidden="true"></span></div>
+                        <div class="text-success text-center mt-3">
+                            <h4>Выздоровела</h4>
+                        </div>
+                        <div class="text-success text-center mt-2">
+                            <h1>{{.WorldData.Recovered}}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border mx-sm-1 p-3">
+                        <div class="card shadow p-3 my-card"><img src="../img/skull.png" alt=""></div>
+                        <div class=" text-center mt-3">
+                            <h4>Умерло</h4>
+                        </div>
+                        <div class="text-center mt-2">
+                            <h1>{{.WorldData.Deaths}}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="wrapper">
+        <h3>Статистика Казахстана</h3>
+        <div class="jumbotron">
+            <div class="row w-100">
+                <div class="col-md-4">
+                    <div class="card border-danger mx-sm-1 p-3">
+                        <div class="card border-danger shadow text-danger p-3 my-card"><img src="../img/virus.png"
+                                alt="">
+                        </div>
+                        <div class="text-danger text-center mt-3">
+                            <h4>Сейчас Болеют:</h4>
+                        </div>
+                        <div class="text-danger text-center mt-2">
+                            <h1 id="now_ill"></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-success mx-sm-1 p-3">
+                        <div class="card border-success shadow text-success p-3 my-card"><span class="fa fa-heart"
+                                aria-hidden="true"></span></div>
+                        <div class="text-success text-center mt-3">
+                            <h4>Выздоровела</h4>
+                        </div>
+                        <div class="text-success text-center mt-2">
+                            <h1 id="now_recovered"></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border mx-sm-1 p-3">
+                        <div class="card shadow p-3 my-card"><img src="../img/skull.png" alt=""></div>
+                        <div class=" text-center mt-3">
+                            <h4>Умерло</h4>
+                        </div>
+                        <div class="text-center mt-2">
+                            <h1 id="now_dead"></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="card border-danger golge">
+                <div class="card-header">
+                    <p class="isteColor">
+                        <h5 class="text-center m-2" style="font-weight: bold">ПОТОК НОВОСТЕЙ</h5>
+                    </p>
+                </div>
+                
+                <div class="card-body">
+                    <div>
+                        <div class="carousel-inner">
+                            <div>
+                                <ul class="timeline">
+                                    {{range $element := .NewsList}}
+                                    <li>
+                                        <!--"_blank" tıklanan linkin yeni sekmede açılmasını sağlar.-->
+                                        <a target="_blank" href="#">{{$element.Title}}</a>
+                                        <a href="#" class="float-right">{{$element.Date}}</a>
+                                        <p class="article">>{{$element.ShortText}}</p>
+                                        <a href={{$element.URL}}>Узнать больше--></a>
+                                        <hr>
+                                    </li>
+                                    {{end}}
+                                    <hr>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+					<ul class="list-unstyled list-inline social text-center">
+						<li class="list-inline-item"><a href="https://www.facebook.com/MinzdravRK/"><i class="fa fa-facebook"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+						<li class="list-inline-item"><a href="#" target="_blank"><i class="fa fa-envelope"></i></a></li>
+					</ul>
+				</div>
+				</hr>
+			</div>	
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                    <p><u><a href="https://www.facebook.com/MinzdravRK/">Министерство здравоохранения Республики Казахстан</a></u></p>
+                    <p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com"
+                            target="_blank">Waffle</a></p>
+                </div>
+                </hr>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+
+        <script>
+    
+        var ill = document.getElementById('now_ill')
+        var dead = document.getElementById('now_dead')
+        var recovered = document.getElementById('now_recovered')
+        let h = new Headers();
+        h.append('x-rapidapi-host', 'coronavirus-monitor.p.rapidapi.com')
+        h.append('x-rapidapi-key', '16e66ff997msh482204f0f630de6p1fed27jsn90482710516d')
+        let req = new Request("https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php", {
+                method: 'GET',
+                headers: h,
+                mode: 'cors'
+            });
+        fetch(req)
+        .then(res => res.json())
+        .then(posts => {
+            console.log(posts.countries_stat[1])
+            ill.innerHTML = posts.countries_stat[99].cases
+            dead.innerHTML = posts.countries_stat[99].deaths
+            recovered.innerHTML = posts.countries_stat[99].total_recovered
+        })
+
+            // Initialize and add the map
+        function initMap() {
+              // The location of Uluru
+            var nur_sultan = {lat: 51.1605, lng: 71.4704};
+            var almaty = {lat: 43.2220, lng: 76.8512};
+            var map = new google.maps.Map(
+                  document.getElementById('map'), {zoom: 4, center: nur_sultan});
+                  var marker1 = new google.maps.Marker({position: nur_sultan, title: "2", map: map});
+                  var marker2 = new google.maps.Marker({position: almaty, title: "8", map: map});
+        }
+                </script>
+                <!--Load the API from the specified URL
+                * The async attribute allows the browser to render the page while the API loads
+                * The key parameter will contain your own API key (which is not needed for this tutorial)
+                * The callback parameter executes the initMap() function
+                -->
+                <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6w4nHeQ4xnbqb1jirld1NlQQUQfx19Ww&callback=initMap">
+    </script>
+</body>
+
+</html>
