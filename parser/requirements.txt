@@ -7,4 +7,4 @@ html5lib==1.0.1
 lxml==4.4.1
 MarkupSafe==1.1.1
 numpy==1.16.2
-requests==2.21.0
+requests==2.31.0
